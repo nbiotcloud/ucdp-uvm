@@ -21,11 +21,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-"""Example Test - Feel Free To Remove."""
+"""Test Test."""
 
-from ucdp_uvm import example
+import ucdp_uvm as uvm
 
 
-def test_example():
-    """Example Test."""
-    assert example(1, 2) == 3
+def test_test():
+    """Test."""
+    test = uvm.UvmTest(name="foo")
+    assert test.name == "foo"
+    assert test.gen is None

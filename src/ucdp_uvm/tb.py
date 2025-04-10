@@ -22,26 +22,55 @@
 # SOFTWARE.
 #
 """
-Unified Chip Design Environment - Unified Verification Methodology.
+UVM Objects.
 """
+
+import ucdp as u
 
 from .cfg import UvmCfg
 from .env import UvmEnv
+from .object import UvmObject
 from .scoreboard import UvmScoreboard
 from .seq import UvmSeq
-from .tb import AConfigurableUvmTbMod, AGenericUvmTbMod, AUvmTbMod, UvmTbMixin
 from .test import UvmTest
 from .vseq import UvmVseq
 
-__all__ = [
-    "AConfigurableUvmTbMod",
-    "AGenericUvmTbMod",
-    "AUvmTbMod",
-    "UvmCfg",
-    "UvmEnv",
-    "UvmScoreboard",
-    "UvmSeq",
-    "UvmTbMixin",
-    "UvmTest",
-    "UvmVseq",
-]
+
+class UvmTbMixin(UvmObject):
+    """Base Class for All UVM Testbenches."""
+
+    def get_envs(self) -> tuple[UvmEnv, ...]:
+        """Environments."""
+        return ()
+
+    def get_seqs(self) -> tuple[UvmSeq, ...]:
+        """Sequences."""
+        return ()
+
+    def get_vseq(self) -> tuple[UvmVseq, ...]:
+        """Virtual Sequences."""
+        return ()
+
+    def get_cfg(self) -> tuple[UvmCfg, ...]:
+        """Configurations."""
+        return ()
+
+    def get_scoreboards(self) -> tuple[UvmScoreboard, ...]:
+        """Score Boards."""
+        return ()
+
+    def get_tests(self) -> tuple[UvmTest, ...]:
+        """Tests."""
+        return ()
+
+
+class AUvmTbMod(u.ATbMod, UvmTbMixin):
+    """Static UVM Testbench."""
+
+
+class AGenericUvmTbMod(u.AGenericTbMod, UvmTbMixin):
+    """Generic UVM Testbench."""
+
+
+class AConfigurableUvmTbMod(u.AConfigurableTbMod, UvmTbMixin):
+    """Configurable UVM Testbench."""

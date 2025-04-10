@@ -22,26 +22,15 @@
 # SOFTWARE.
 #
 """
-Unified Chip Design Environment - Unified Verification Methodology.
+UVM Scoreboards.
 """
 
-from .cfg import UvmCfg
-from .env import UvmEnv
-from .scoreboard import UvmScoreboard
-from .seq import UvmSeq
-from .tb import AConfigurableUvmTbMod, AGenericUvmTbMod, AUvmTbMod, UvmTbMixin
-from .test import UvmTest
-from .vseq import UvmVseq
+import ucdp as u
 
-__all__ = [
-    "AConfigurableUvmTbMod",
-    "AGenericUvmTbMod",
-    "AUvmTbMod",
-    "UvmCfg",
-    "UvmEnv",
-    "UvmScoreboard",
-    "UvmSeq",
-    "UvmTbMixin",
-    "UvmTest",
-    "UvmVseq",
-]
+from .object import UvmIdentObject
+
+
+class UvmScoreboard(UvmIdentObject):
+    """Base Class for All UVM Scoreboards."""
+
+    gen: u.Gen | None = None
