@@ -1,0 +1,15 @@
+.*_cache/
+.coverage*
+.DS_Store
+.hypothesis
+.nox/
+.pdm-python
+.test2ref
+.venv*
+*.egg-info
+*.pyc
+build/
+dist/
+docs.zip
+report.xml
+site/

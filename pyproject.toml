@@ -1,0 +1,206 @@
+#
+# MIT License
+#
+# Copyright (c) 2025 nbiotcloud
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+
+[project]
+name = "ucdp-uvm"
+dynamic = ["version"]
+description = "Unified Chip Design Environment - Unified Verification Methodology"
+readme = "README.md"
+authors = [
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.10.0,<4.0"
+dependencies = [
+]
+
+[project.urls]
+"Homepage" = "https://github.com/nbiotcloud/ucdp-uvm"
+"Documentation" = "https://ucdp-uvm.readthedocs.io/en/stable/"
+"Bug Tracker" = "https://github.com/nbiotcloud/ucdp-uvm/issues"
+
+[dependency-groups]
+dev = [
+    "contextlib-chdir>=1.0.2",
+    "coveralls>=3.3.1",
+    "mkdocs-click>=0.8.1",
+    "mkdocs-include-markdown-plugin>=6.0.5",
+    "mkdocs-literate-nav>=0.6.1",
+    "mkdocs-material>=9.5.18",
+    "mkdocstrings-python>=1.9.2",
+    "mypy>=1.9.0",
+    "pre-commit>=4.1.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.11.2",
+    "test2ref>=0.4.2",
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+includes = ["src/ucdp_uvm"]
+
+[tool.pdm.version]
+source = "scm"
+fallback_version = "0.0.0"
+
+[tool.ruff]
+line-length = 120
+fix = true
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    # isort
+    "I",
+    # pyflakes
+    "F",
+    # pycodestyle
+    "E", "W",
+    # pydocstyle
+    "D",
+    # pep8-naming
+    "N",
+    # flake8-2020
+    "YTT",
+    # flake8-bugbear
+    "B",
+    # flake8-quotes
+    "Q",
+    # flake8-debugger
+    "T10",
+    # flake8-gettext
+    "INT",
+    # pylint
+    "PL",
+    # misc lints
+    "PIE",
+    # flake8-pyi
+    "PYI",
+    # tidy imports
+    "TID",
+    # implicit string concatenation
+    "ISC",
+    # type-checking imports
+    "TC",
+    # comprehensions
+    "C",
+    "C4",
+    # pygrep-hooks
+    "PGH",
+    # Ruff-specific rules
+    "RUF",
+    # flake8-bandit: exec-builtin
+    "S102",
+    # numpy-legacy-random
+    "NPY002",
+    # Perflint
+    "PERF",
+    # flynt
+    "FLY",
+    # flake8-logging-format
+    "G",
+    # pyupgrade
+    "UP",
+    # annotation
+    # "ANN"
+    # bandit
+    "S",
+    # Argument
+    # "ARG",
+    # Pathlib
+    "PTH",
+    # Simplify
+    # "SIM",
+    # Return
+    "RET",
+    # Raise
+    "RSE",
+]
+ignore = [
+    # too-many-arguments
+    'PLR0913',
+    # Ambiguous doc
+    'D203', 'D212', 'D402', 'D406',
+    # Multiline doc is ok.
+    'D200',
+    # We use the class for constructor doc
+    'D107',
+    # Magic Method Documentation is optional
+    'D105',
+    # We use faster isinstance checks
+    'UP038',
+    # Assert
+    'S101',
+    # Type-Checking
+    'TC001',
+    # Indent of doctest
+    'D412',
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    # Magic Values
+    "PLR2004",
+    # Argument
+    "ARG001",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pytest.ini_options]
+addopts ="""
+    --cov src/ucdp_uvm
+    --cov-report term
+    --cov-report html
+    --doctest-glob=docs/*
+    --doctest-modules
+    --ignore-glob=tests/testdata/*
+    --log-level=INFO
+    --junitxml=report.xml
+"""
+filterwarnings = [
+    "error",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    'return NotImplemented',
+    'raise NotImplementedError()',
+    'pragma: no cover',
+    'assert False',
+]
+
+[tool.mypy]
+disable_error_code = "misc"
+ignore_missing_imports = true
+# plugins = "pydantic.mypy"
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+allow_untyped_defs = true

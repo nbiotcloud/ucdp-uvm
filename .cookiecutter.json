@@ -1,0 +1,13 @@
+{
+    "cookiecutter": {
+    "_checkout": null,
+    "_output_dir": "/Users/iccode17/projects",
+    "_repo_dir": "python-template",
+    "_template": "python-template",
+    "name": "ucdp-uvm",
+    "snake_name": "ucdp_uvm",
+    "title": "Unified Chip Design Environment - Unified Verification Methodology",
+    "user": "nbiotcloud",
+    "year": "2025"
+}
+}
