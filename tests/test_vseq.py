@@ -21,27 +21,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-"""
-Unified Chip Design Environment - Unified Verification Methodology.
-"""
+"""Virtual Sequence Test."""
 
-from .cfg import UvmCfg
-from .env import UvmEnv
-from .scoreboard import UvmScoreboard
-from .seq import UvmSeq
-from .tb import AConfigurableUvmTbMod, AGenericUvmTbMod, AUvmTbMod, UvmTbMixin
-from .test import UvmTest
-from .vseq import UvmVseq
+import ucdp_uvm as uvm
 
-__all__ = [
-    "AConfigurableUvmTbMod",
-    "AGenericUvmTbMod",
-    "AUvmTbMod",
-    "UvmCfg",
-    "UvmEnv",
-    "UvmScoreboard",
-    "UvmSeq",
-    "UvmTbMixin",
-    "UvmTest",
-    "UvmVseq",
-]
+
+def test_vseq():
+    """Virtual Sequence."""
+    vseq = uvm.UvmVseq(name="foo")
+    assert vseq.name == "foo"
+    assert vseq.gen is None

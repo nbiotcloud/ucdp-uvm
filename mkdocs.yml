@@ -51,11 +51,12 @@ plugins:
             members_order: source
             show_docstring_parameters: true
             show_docstring_other_parameters: true
+            show_submodules: false
             separate_signature: true
             signature_crossrefs: true
             show_signature_annotations: false
             show_symbol_type_heading: true
-            # preload_modules: [pydantic]
+            preload_modules: [pydantic]
             inherited_members: false
           import:
             - https://docs.python.org/3/objects.inv

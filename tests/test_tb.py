@@ -21,27 +21,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-"""
-Unified Chip Design Environment - Unified Verification Methodology.
-"""
+"""Environment Test."""
 
-from .cfg import UvmCfg
-from .env import UvmEnv
-from .scoreboard import UvmScoreboard
-from .seq import UvmSeq
-from .tb import AConfigurableUvmTbMod, AGenericUvmTbMod, AUvmTbMod, UvmTbMixin
-from .test import UvmTest
-from .vseq import UvmVseq
+import ucdp_uvm as uvm
 
-__all__ = [
-    "AConfigurableUvmTbMod",
-    "AGenericUvmTbMod",
-    "AUvmTbMod",
-    "UvmCfg",
-    "UvmEnv",
-    "UvmScoreboard",
-    "UvmSeq",
-    "UvmTbMixin",
-    "UvmTest",
-    "UvmVseq",
-]
+
+class UvmTbMod(uvm.AUvmTbMod):
+    """Example UVM Testbench."""
+
+    def _build(self):
+        pass
+
+
+def test_tb():
+    """Testbench."""
+    tb = UvmTbMod()
+    assert tb.name == "uvm_tb"
+    assert tb.modname == "uvm_tb"
+    assert tb.libname == "tests"
+
+    assert tb.get_envs() == ()
+    assert tb.get_seqs() == ()
+    assert tb.get_vseq() == ()
+    assert tb.get_cfg() == ()
+    assert tb.get_scoreboards() == ()
+    assert tb.get_tests() == ()
