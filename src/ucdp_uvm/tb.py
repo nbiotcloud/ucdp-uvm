@@ -47,11 +47,11 @@ class UvmTbMixin(UvmObject):
         """Sequences."""
         return ()
 
-    def get_vseq(self) -> tuple[UvmVseq, ...]:
+    def get_vseqs(self) -> tuple[UvmVseq, ...]:
         """Virtual Sequences."""
         return ()
 
-    def get_cfg(self) -> tuple[UvmCfg, ...]:
+    def get_cfgs(self) -> tuple[UvmCfg, ...]:
         """Configurations."""
         return ()
 
