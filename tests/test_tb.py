@@ -42,7 +42,7 @@ def test_tb():
 
     assert tb.get_envs() == ()
     assert tb.get_seqs() == ()
-    assert tb.get_vseq() == ()
-    assert tb.get_cfg() == ()
+    assert tb.get_vseqs() == ()
+    assert tb.get_cfgs() == ()
     assert tb.get_scoreboards() == ()
     assert tb.get_tests() == ()
